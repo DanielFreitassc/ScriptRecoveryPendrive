@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checar se é Brasileiro ou Estrangeiro</title>
+    <style>
+        h1{
+            color: rgb(62, 167, 167);
+        }
+        
+    </style>
+    
+
+</head>
+<body>
+    <h1>Checar nacionalidade</h1>
+    <input type="text" name="txtnac" id="txtnac">
+    <input type="button" value="Consultar" onclick="verificar()">
+    <div id="res"></div>
+    <script>
+        function verificar(){
+            var txtn = window.document.getElementById("txtnac")
+            var res = window.document.getElementById("res")
+            var ncl = (txtn.value.toLowerCase())
+            if(ncl == "brasil"|| ncl == "brasileiro"){
+                res.innerHTML+=("Você é Brasileiro")}
+            else if(ncl == "estados unidos" || ncl == "eua"){
+                res.innerHTML += `Estrangeiro!`
+            }
+            else {
+                res.innerHTML += "Não conseguimos checar sua nacionalidade"
+            }
+            res.innerHTML += `<p>Dirija sempre com cinto de segurança!</p>`
+
+        }
+    </script>
+</body>
+</html>
