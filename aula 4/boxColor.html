@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Modelo de box interativas</title>
+    <style>
+       
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="box" onclick="clicar()" onmouseenter = "entrar()" onmouseout="sair()">
+            SOMAR
+        </div>
+
+        
+            <input  type="number" name="numUm" id="numUm">
+            <div id="elemento">+</div>
+            <input type="number" name="numDois" id="numDois">
+    </div>
+    <script>
+        const box = document.getElementById("box");
+        function clicar() {
+            box.style.backgroundColor = "red";
+            var nm1 = document.getElementById("numUm");
+            var nm2 = document.getElementById("numDois");
+            var elm = document.getElementById("elemento");
+            var numUm = Number(nm1.value);
+            var numDois = Number(nm2.value);
+            var sum = numUm + numDois;
+            elm.innerHTML = sum;
+              
+        }
+        function entrar() {
+            box.style.backgroundColor = "yellow";
+        }
+        function sair(){
+            box.style.backgroundColor = "green"
+        }
+        
+    </script>
+</body>
+</html>
