@@ -1,0 +1,16 @@
+body{
+   background-image: url(pexels-mark-burnett-1095817.jpg);
+}
+#box{ 
+    font: bold 20px Arial;
+    background-color: green;
+    height: 150px;
+    width: 150px;
+    text-align: center;
+    line-height: 150px;
+    color: white;
+    border-radius: 30px;
+    opacity: 80%;
+    margin: 10px;
+
+}

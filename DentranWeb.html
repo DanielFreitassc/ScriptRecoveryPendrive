@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-bt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="detran-sc-2022.png" type="image/x-icon">
+    <title>DETRAN</title>
+    <style>
+        body {
+            background-image: url(pexels-alexander-kovalev-2847648.jpg);
+        }
+        .medidor{
+        margin-top:200px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;  
+        color: white;
+        }
+        .container_bota{
+            display: flex;
+            align-items: center;
+            justify-content: end;
+           
+        }
+        .botao{
+            display: flex;
+            text-align: center;
+            background-color: blueviolet;
+            border-radius: 50px;
+            font-size: 20px;
+            color: yellow;
+            padding: 5px;
+            margin-bottom: 20px;
+            margin: 10px;
+            align-items: center;
+            
+        }
+        .input{
+            text-align: center;
+            border-radius: 50px;
+            padding: auto;
+            font-size: 30px;
+            color: black;
+        }
+        #res{
+            display: flex;
+            text-align: center;
+            align-items: center;
+            flex-direction: column;
+            font-size: 30px;
+            color: white;
+            background-color: plum;
+            border-radius: 30px;
+            padding: auto;
+            margin-left: 760px;
+            margin-right: 760px;
+
+        }
+       
+    </style>
+</head>
+<body>
+    <div class="medidor">
+    <h1  id="title" >Sistema de Multas</h1>
+    <h2>Velocidade do veiculo</h2>
+    <input class="input" type="number" name="txtvel" id="txtvel"> <km>
+    <div  class="container_botao"><input  class="botao" type="button" value="Verificar" onclick="calcular()"></div>
+</div>
+    <div id="res">
+    
+        <script>
+            function calcular() {
+                var txtv = window.document.getElementById("txtvel")
+                var res = window.document.getElementById("res")
+                var vel = Number(txtv.value)
+                res.innerHTML = `<p> Sua velocidade atual é de <strong> ${vel}Km/h </strogn> </p>`
+                if(vel > 60) {
+                    res.innerHTML += `<p>Você foi <strong>MULTADO</strong> Por excesso de velocidade!</p>`
+                }
+                res.innerHTML += `<p>Dirija sempre com cinto de segurança</p>`
+            }
+        </script>
+    </div>
+    
+</body>
+</html>
