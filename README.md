@@ -1,89 +1,87 @@
 # 🧼 Script de Formatação Segura de Pendrive (Diskpart Interativo)
 
-Este script `.bat` foi criado para **formatar com segurança um pendrive** ou outro disco externo no Windows usando o `diskpart`, com uma interface interativa via terminal.
+Este script `.bat` foi criado para **formatar com segurança um pendrive** ou outro disco externo no Windows usando o `diskpart`, com uma interface interativa no terminal.
 
 ---
 
 ## ⚠️ Aviso de Segurança
 
 > **Este script APAGA TODO O CONTEÚDO do disco selecionado.**
-> Use com extrema cautela e certifique-se de escolher o número correto do dispositivo removível (pendrive).
+> Use com extrema cautela e certifique-se de escolher corretamente o número do pendrive (verificado na listagem dos discos).
 
 ---
 
 ## ✅ O que o script faz
 
 1. Lista todos os discos conectados ao sistema.
-2. Solicita ao usuário que digite o número do disco que deseja formatar.
-3. Pede confirmação antes de continuar.
-4. Executa os comandos:
-   - `clean all` (zera o disco inteiro, incluindo tabela de partição)
+2. Solicita ao usuário que informe o número do disco a ser formatado.
+3. Permite escolher entre formatação **FAT32** ou **NTFS**.
+4. Pede confirmação antes de executar qualquer alteração.
+5. Executa os comandos:
+   - `clean all` (zera o disco inteiro, inclusive tabela de partições)
    - Cria nova partição primária
-   - Formata como **FAT32**
+   - Formata com o sistema de arquivos escolhido
    - Atribui uma letra de unidade
 
 ---
 
 ## 📋 Como usar
 
-1. **Clique com o botão direito no script** `formatar_pendrive_interativo.bat` e selecione **Executar como administrador**.
-2. Será exibida uma lista de discos conectados (Disk 0, Disk 1, ...).
-3. Digite o número do disco correspondente ao pendrive.
-4. Confirme com `S` quando for solicitado.
-5. Aguarde a finalização da formatação.
+1. Salve o script como `formatar_pendrive_interativo.bat`.
+2. Clique com o botão direito no arquivo e selecione **Executar como administrador**.
+3. Será exibida uma lista de discos conectados (ex: Disco 0, Disco 1...).
+4. Digite o número do disco correspondente ao seu pendrive.
+5. Escolha o sistema de arquivos: FAT32 ou NTFS.
+6. Confirme digitando `S` quando solicitado.
+7. Aguarde a finalização da formatação.
 
 ---
 
 ## 🧪 Exemplo de uso
 
-```
+```text
+===========================================
+      LISTANDO OS DISCOS DISPONÍVEIS
+===========================================
 
-\===========================================
-LISTANDO OS DISCOS DISPONÍVEIS
-==============================
-
-Disco ###  Status         Tamanho     Livre     Din     GPT
-
----
-
-Disco 0     Online         476 GB      0 B        \*       \*
-Disco 1     Online         14 GB       14 GB
+  Disco ###  Status         Tamanho     Livre     Din     GPT
+  ----------  -------------  ----------  --------  ------  ---
+  Disco 0     Online         476 GB      0 B        *       *
+  Disco 1     Online         14 GB       14 GB
 
 Digite o número do disco que deseja formatar (ex: 1): 1
 
-> > > VOCÊ SELECIONOU O DISCO: 1
-> > > TODAS AS PARTIÇÕES SERÃO APAGADAS!
+>>> Escolha o sistema de arquivos para a formatação:
+[1] FAT32
+[2] NTFS
+Digite 1 ou 2: 1
+
+>>> VOCÊ SELECIONOU O DISCO: 1
+>>> SISTEMA DE ARQUIVOS ESCOLHIDO: fat32
+>>> TODAS AS PARTIÇÕES SERÃO APAGADAS!
 
 Tem certeza que deseja continuar? (S/N): S
 
+Iniciando formatação do disco 1 com fat32...
 ````
 
 ---
 
 ## 🧰 Requisitos
 
-- Windows 10 ou superior
-- Permissões de Administrador
+* Windows 10 ou superior
+* Acesso com permissões de administrador
 
 ---
 
 ## 📎 Observações
 
-- O script formata o disco usando `FAT32`. Se preferir `NTFS`, altere a linha:
-  ```bat
-  format fs=fat32 quick
-````
-
-para:
-
-```bat
-format fs=ntfs quick
-```
+* O script oferece a escolha entre **FAT32** e **NTFS** durante a execução.
+* O comando `clean all` apaga todos os dados e estruturas de partição — ideal para discos que estão com partições corrompidas ou uso incorreto de espaço.
+* Pode ser adaptado facilmente para suportar **exFAT**, se necessário.
 
 ---
 
 ## ✅ Licença
 
-Uso livre para fins pessoais e educacionais.
-
-```
+Uso livre para fins pessoais e educacionais. Sem garantias. Use por sua conta e risco.
