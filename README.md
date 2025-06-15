@@ -87,8 +87,3 @@ format fs=ntfs quick
 Uso livre para fins pessoais e educacionais.
 
 ```
-
----
-
-Se quiser, posso montar também um `.zip` com o `.bat` + `README.md` organizadinho, é só pedir!
-```
