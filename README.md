@@ -1,3 +1,4 @@
+```
 @echo off
 setlocal EnableDelayedExpansion
 
@@ -52,3 +53,4 @@ echo =============================
 echo     FORMATAÇÃO CONCLUÍDA
 echo =============================
 pause
+```
