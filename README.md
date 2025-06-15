@@ -1,56 +1,94 @@
+# 🧼 Script de Formatação Segura de Pendrive (Diskpart Interativo)
+
+Este script `.bat` foi criado para **formatar com segurança um pendrive** ou outro disco externo no Windows usando o `diskpart`, com uma interface interativa via terminal.
+
+---
+
+## ⚠️ Aviso de Segurança
+
+> **Este script APAGA TODO O CONTEÚDO do disco selecionado.**
+> Use com extrema cautela e certifique-se de escolher o número correto do dispositivo removível (pendrive).
+
+---
+
+## ✅ O que o script faz
+
+1. Lista todos os discos conectados ao sistema.
+2. Solicita ao usuário que digite o número do disco que deseja formatar.
+3. Pede confirmação antes de continuar.
+4. Executa os comandos:
+   - `clean all` (zera o disco inteiro, incluindo tabela de partição)
+   - Cria nova partição primária
+   - Formata como **FAT32**
+   - Atribui uma letra de unidade
+
+---
+
+## 📋 Como usar
+
+1. **Clique com o botão direito no script** `formatar_pendrive_interativo.bat` e selecione **Executar como administrador**.
+2. Será exibida uma lista de discos conectados (Disk 0, Disk 1, ...).
+3. Digite o número do disco correspondente ao pendrive.
+4. Confirme com `S` quando for solicitado.
+5. Aguarde a finalização da formatação.
+
+---
+
+## 🧪 Exemplo de uso
+
 ```
-@echo off
-setlocal EnableDelayedExpansion
 
-echo ===========================================
-echo       LISTANDO OS DISCOS DISPONÍVEIS
-echo ===========================================
-echo.
-echo >>> Anote o número do seu pendrive com base na lista abaixo:
-echo.
+\===========================================
+LISTANDO OS DISCOS DISPONÍVEIS
+==============================
 
-:: Gera a lista de discos com diskpart
-echo list disk > listdisks.txt
-diskpart /s listdisks.txt
-del listdisks.txt
+Disco ###  Status         Tamanho     Livre     Din     GPT
 
-echo.
-set /p DISK_NUM=Digite o número do disco que deseja formatar (ex: 1): 
+---
 
-echo.
-echo >>> VOCÊ SELECIONOU O DISCO: %DISK_NUM%
-echo >>> TODAS AS PARTIÇÕES SERÃO APAGADAS!
-echo.
-set /p CONFIRMA=Tem certeza que deseja continuar? (S/N): 
+Disco 0     Online         476 GB      0 B        \*       \*
+Disco 1     Online         14 GB       14 GB
 
-if /I not "%CONFIRMA%"=="S" (
-    echo Operação cancelada.
-    pause
-    exit /b
-)
+Digite o número do disco que deseja formatar (ex: 1): 1
 
-echo.
-echo Iniciando formatação do disco %DISK_NUM%...
+> > > VOCÊ SELECIONOU O DISCO: 1
+> > > TODAS AS PARTIÇÕES SERÃO APAGADAS!
 
-:: Cria script temporário do diskpart
-(
-echo select disk %DISK_NUM%
-echo clean all
-echo create partition primary
-echo format fs=fat32 quick
-echo assign
-echo exit
-) > diskpart_script.txt
+Tem certeza que deseja continuar? (S/N): S
 
-:: Executa o script
-diskpart /s diskpart_script.txt
+````
 
-:: Remove temporário
-del diskpart_script.txt
+---
 
-echo.
-echo =============================
-echo     FORMATAÇÃO CONCLUÍDA
-echo =============================
-pause
+## 🧰 Requisitos
+
+- Windows 10 ou superior
+- Permissões de Administrador
+
+---
+
+## 📎 Observações
+
+- O script formata o disco usando `FAT32`. Se preferir `NTFS`, altere a linha:
+  ```bat
+  format fs=fat32 quick
+````
+
+para:
+
+```bat
+format fs=ntfs quick
+```
+
+---
+
+## ✅ Licença
+
+Uso livre para fins pessoais e educacionais.
+
+```
+
+---
+
+Se quiser, posso montar também um `.zip` com o `.bat` + `README.md` organizadinho, é só pedir!
 ```
