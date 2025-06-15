@@ -32,10 +32,27 @@ if "%FILESYS%"=="1" (
     goto selecionarSistema
 )
 
+:selecionarLimpeza
+echo.
+echo >>> Escolha o tipo de limpeza a ser feita:
+echo [1] Limpeza rápida (clean) — apaga apenas as partições
+echo [2] Limpeza completa (clean all) — apaga todos os dados, pode demorar vários minutos
+set /p CLEANOP=Digite 1 ou 2: 
+
+if "%CLEANOP%"=="1" (
+    set CLEAN_CMD=clean
+) else if "%CLEANOP%"=="2" (
+    set CLEAN_CMD=clean all
+) else (
+    echo Opção inválida. Tente novamente.
+    goto selecionarLimpeza
+)
+
 echo.
 echo >>> VOCÊ SELECIONOU O DISCO: %DISK_NUM%
-echo >>> SISTEMA DE ARQUIVOS ESCOLHIDO: %FILESYSTEM%
-echo >>> TODAS AS PARTIÇÕES SERÃO APAGADAS!
+echo >>> SISTEMA DE ARQUIVOS: %FILESYSTEM%
+echo >>> TIPO DE LIMPEZA: %CLEAN_CMD%
+echo >>> TODAS AS PARTIÇÕES E DADOS SERÃO APAGADOS!
 echo.
 set /p CONFIRMA=Tem certeza que deseja continuar? (S/N): 
 
@@ -46,12 +63,12 @@ if /I not "%CONFIRMA%"=="S" (
 )
 
 echo.
-echo Iniciando formatação do disco %DISK_NUM% com %FILESYSTEM%...
+echo Iniciando formatação do disco %DISK_NUM% com %FILESYSTEM% (%CLEAN_CMD%)...
 
 :: Cria script temporário do diskpart
 (
 echo select disk %DISK_NUM%
-echo clean all
+echo %CLEAN_CMD%
 echo create partition primary
 echo format fs=%FILESYSTEM% quick
 echo assign
