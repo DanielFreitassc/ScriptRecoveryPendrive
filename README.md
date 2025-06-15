@@ -1,43 +1,46 @@
 # 🧼 Script de Formatação Segura de Pendrive (Diskpart Interativo)
 
-Este script `.bat` foi criado para **formatar com segurança um pendrive** ou outro disco externo no Windows usando o `diskpart`, com uma interface interativa no terminal.
+Este script `.bat` foi criado para **formatar com segurança um pendrive** ou outro disco externo no Windows utilizando o `diskpart`, com uma interface interativa via terminal.
 
 ---
 
 ## ⚠️ Aviso de Segurança
 
 > **Este script APAGA TODO O CONTEÚDO do disco selecionado.**
-> Use com extrema cautela e certifique-se de escolher corretamente o número do pendrive (verificado na listagem dos discos).
+> Use com extrema cautela e certifique-se de escolher corretamente o número do pendrive, conforme listado na tela.
 
 ---
 
-## ✅ O que o script faz
+## ✅ Funcionalidades do Script
 
 1. Lista todos os discos conectados ao sistema.
-2. Solicita ao usuário que informe o número do disco a ser formatado.
-3. Permite escolher entre formatação **FAT32** ou **NTFS**.
-4. Pede confirmação antes de executar qualquer alteração.
-5. Executa os comandos:
-   - `clean all` (zera o disco inteiro, inclusive tabela de partições)
-   - Cria nova partição primária
-   - Formata com o sistema de arquivos escolhido
-   - Atribui uma letra de unidade
+2. Solicita que o usuário informe o número do disco a ser formatado.
+3. Permite escolher o sistema de arquivos para a formatação: **FAT32** ou **NTFS**.
+4. Permite escolher entre limpeza rápida (`clean`) ou completa (`clean all`), com aviso de que a limpeza completa pode levar mais tempo.
+5. Solicita confirmação antes de executar qualquer ação.
+6. Executa os comandos:
+
+   * `clean` ou `clean all` (de acordo com a escolha do usuário)
+   * Cria uma partição primária nova
+   * Formata com o sistema de arquivos escolhido
+   * Atribui automaticamente uma letra de unidade
 
 ---
 
 ## 📋 Como usar
 
 1. Salve o script como `formatar_pendrive_interativo.bat`.
-2. Clique com o botão direito no arquivo e selecione **Executar como administrador**.
-3. Será exibida uma lista de discos conectados (ex: Disco 0, Disco 1...).
-4. Digite o número do disco correspondente ao seu pendrive.
-5. Escolha o sistema de arquivos: FAT32 ou NTFS.
-6. Confirme digitando `S` quando solicitado.
-7. Aguarde a finalização da formatação.
+2. Clique com o botão direito no arquivo e escolha **Executar como administrador**.
+3. Observe a lista de discos exibida (exemplo: Disco 0, Disco 1, etc).
+4. Digite o número do disco correspondente ao pendrive que deseja formatar.
+5. Escolha o sistema de arquivos (FAT32 ou NTFS).
+6. Escolha o tipo de limpeza (rápida ou completa).
+7. Confirme a operação digitando `S` quando solicitado.
+8. Aguarde até a conclusão da formatação.
 
 ---
 
-## 🧪 Exemplo de uso
+## 🧪 Exemplo de execução
 
 ```text
 ===========================================
@@ -56,29 +59,35 @@ Digite o número do disco que deseja formatar (ex: 1): 1
 [2] NTFS
 Digite 1 ou 2: 1
 
+>>> Escolha o tipo de limpeza:
+[1] Limpeza rápida (clean) — apaga apenas as partições
+[2] Limpeza completa (clean all) — apaga todos os dados, pode levar vários minutos
+Digite 1 ou 2: 2
+
 >>> VOCÊ SELECIONOU O DISCO: 1
 >>> SISTEMA DE ARQUIVOS ESCOLHIDO: fat32
->>> TODAS AS PARTIÇÕES SERÃO APAGADAS!
+>>> TIPO DE LIMPEZA: clean all
+>>> TODAS AS PARTIÇÕES E DADOS SERÃO APAGADOS!
 
 Tem certeza que deseja continuar? (S/N): S
 
-Iniciando formatação do disco 1 com fat32...
-````
+Iniciando formatação do disco 1 com fat32 (clean all)...
+```
 
 ---
 
 ## 🧰 Requisitos
 
 * Windows 10 ou superior
-* Acesso com permissões de administrador
+* Permissões de administrador para executar o script
 
 ---
 
 ## 📎 Observações
 
-* O script oferece a escolha entre **FAT32** e **NTFS** durante a execução.
-* O comando `clean all` apaga todos os dados e estruturas de partição — ideal para discos que estão com partições corrompidas ou uso incorreto de espaço.
-* Pode ser adaptado facilmente para suportar **exFAT**, se necessário.
+* O comando `clean all` apaga todos os dados e estrutura do disco e pode levar bastante tempo, especialmente em pendrives com dados residuais ou tabelas de partição antigas.
+* Caso o pendrive apresente problemas após limpeza rápida, use a limpeza completa.
+* É possível adaptar o script para incluir outros sistemas de arquivos, como exFAT, se necessário.
 
 ---
 
