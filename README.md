@@ -94,3 +94,4 @@ Iniciando formatação do disco 1 com fat32 (clean all)...
 ## ✅ Licença
 
 Uso livre para fins pessoais e educacionais. Sem garantias. Use por sua conta e risco.
+
